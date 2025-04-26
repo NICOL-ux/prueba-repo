@@ -1,1 +1,39 @@
-<p>subir-repositorio works!</p>
+<div class="subir-repositorio-container">
+    <h2>Subir Nuevo Repositorio</h2>
+  
+    <form [formGroup]="uploadForm" (ngSubmit)="subirRepositorio()" class="upload-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Repositorio</mat-label>
+        <input matInput formControlName="nombreRepositorio" required>
+        <mat-error *ngIf="uploadForm.get('nombreRepositorio')?.hasError('required')">
+          El nombre del repositorio es requerido.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción (Opcional)</mat-label>
+        <textarea matInput formControlName="descripcion"></textarea>
+      </mat-form-field>
+  
+      <div>
+        <label for="archivo" class="file-upload-label">
+          <mat-icon>attach_file</mat-icon> Seleccionar Archivo
+        </label>
+        <input type="file" id="archivo" (change)="onFileSelected($event)" class="file-upload-input" formControlName="archivo" required>
+        <mat-error *ngIf="uploadForm.get('archivo')?.hasError('required')">
+          El archivo es requerido.
+        </mat-error>
+        <div *ngIf="archivoSubido" class="file-name">
+          Archivo seleccionado: {{ archivoSubido.name }}
+        </div>
+      </div>
+  
+      <mat-progress-bar *ngIf="subiendo" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="subiendo">
+        <mat-icon>cloud_upload</mat-icon>
+        <span *ngIf="!subiendo">Subir</span>
+        <span *ngIf="subiendo">Subiendo... {{uploadProgress}}%</span>
+      </button>
+    </form>
+  </div>

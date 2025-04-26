@@ -1,0 +1,87 @@
+/* historial-commit.component.scss */
+.historial-commit-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    .commit-list {
+      .commit-item {
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+  
+        &:last-child {
+          border-bottom: none;
+        }
+  
+        .commit-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+  
+          .author {
+            font-weight: bold;
+            color: #007bff;
+          }
+  
+          .date {
+            color: #777;
+            font-size: 0.9em;
+          }
+        }
+  
+        .commit-message {
+          margin-bottom: 8px;
+          color: #333;
+        }
+  
+        .commit-details {
+          color: #555;
+          font-size: 0.85em;
+  
+          span {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  
+    p {
+      text-align: center;
+      color: #777;
+    }
+  
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+  
+      button {
+        padding: 8px 15px;
+        margin: 0 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+  
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.6;
+        }
+      }
+  
+      span {
+        margin: 0 10px;
+        font-size: 0.9em;
+        color: #555;
+      }
+    }
+  }

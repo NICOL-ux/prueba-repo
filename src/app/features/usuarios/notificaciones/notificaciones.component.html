@@ -1,1 +1,26 @@
-<p>notificaciones works!</p>
+<div class="notificaciones-container">
+    <h2>Notificaciones</h2>
+  
+    <div class="notificacion-list" *ngIf="notificaciones && notificaciones.length > 0; else noNotificaciones">
+      <div class="notificacion-item" *ngFor="let notificacion of notificaciones">
+        <div class="header">
+          <span class="tipo">{{ notificacion.tipo }}</span>
+          <span class="fecha">{{ notificacion.fecha | date: 'medium' }}</span>
+        </div>
+        <div class="mensaje">{{ notificacion.mensaje }}</div>
+        <div class="detalles" *ngIf="notificacion.detalles">
+          <strong>Detalles:</strong> {{ notificacion.detalles }}
+        </div>
+        <div class="acciones" *ngIf="notificacion.acciones && notificacion.acciones.length > 0">
+          <button mat-button *ngFor="let accion of notificacion.acciones" (click)="ejecutarAccion(accion, notificacion)">
+            {{ accion.label }}
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #noNotificaciones>
+      <p>No hay notificaciones.</p>
+    </ng-template>
+  
+    </div>

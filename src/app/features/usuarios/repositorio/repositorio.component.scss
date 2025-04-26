@@ -1,0 +1,60 @@
+/* src/app/features/usuarios/repositorio/repositorio.component.scss */
+.repositorio-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    mat-list {
+      padding: 0;
+  
+      mat-list-item {
+        border-bottom: 1px solid #eee;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+  
+        .mat-list-item-content {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          flex-grow: 1;
+        }
+  
+        .mat-list-item-title {
+          font-weight: bold;
+          color: #333;
+        }
+  
+        .mat-list-item-line {
+          color: #777;
+          font-size: 0.9em;
+        }
+  
+        .mat-list-item-icon {
+          margin-right: 16px;
+          color: #007bff;
+        }
+  
+        .actions {
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+  
+    p {
+      text-align: center;
+      color: #777;
+    }
+  }

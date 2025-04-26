@@ -1,1 +1,24 @@
-<p>repositorio works!</p>
+<div class="repositorio-container">
+    <h2>Lista de Repositorios Subidos</h2>
+    <mat-list *ngIf="repositorios().length > 0; else noRepositorios">
+      <mat-list-item *ngFor="let repositorio of repositorios()">
+        <mat-icon matListItemIcon>folder</mat-icon>
+        <div matListItemTitle>{{ repositorio.nombre }}</div>
+        <div matListItemLine>
+          <span *ngIf="repositorio.descripcion">{{ repositorio.descripcion }} - </span>
+          Subido el {{ repositorio.subidoEn | date: 'medium' }} ({{ repositorio.archivoNombre }})
+        </div>
+        <div class="actions">
+          <button mat-icon-button color="primary" (click)="editarRepositorio(repositorio)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminarRepositorio(repositorio)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <ng-template #noRepositorios>
+      <p>No se han subido repositorios aún.</p>
+    </ng-template>
+  </div>

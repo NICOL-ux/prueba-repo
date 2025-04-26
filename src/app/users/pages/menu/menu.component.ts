@@ -27,7 +27,7 @@ export type MenuItem = {
     <div class="profile-section" [class.collapsed]="collapsed">
       <div class="profile-image-container">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF3LjU_BWp6Kbt2KKh6ydZ_WCNsEbosyZ6Xw&s"
+          src="https://cdn-icons-png.flaticon.com/512/3839/3839635.png"
           alt="perfil"
           class="profile-image"
           [style.width.px]="profileImageSize()"
@@ -111,8 +111,8 @@ export class MenuComponent {
 
   // Menú para usuario (repositorio)
   usuarioMenuItems = signal<MenuItem[]>([
-    { icon: 'folder_open', label: 'Mis Repositorios', route: 'repositorio' },
     { icon: 'upload_file', label: 'Subir Repositorios', route: 'subir-repositorio' },
+    { icon: 'folder_open', label: 'Mis Repositorios', route: 'repositorio' },
     { icon: 'code', label: 'Historial de Commit', route: 'historial-commit' },
     { icon: 'group', label: 'Colaboradores', route: 'colaboradores' },
     { icon: 'notifications', label: 'Notificaciones', route: 'notificaciones' },

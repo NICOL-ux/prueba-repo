@@ -1,1 +1,30 @@
-<p>colaboradores works!</p>
+<div class="colaboradores-container">
+    <h2>Colaboradores</h2>
+  
+    <div class="colaborador-list" *ngIf="colaboradores && colaboradores.length > 0; else noColaboradores">
+      <div class="colaborador-item" *ngFor="let colaborador of colaboradores">
+        <div class="info">
+          <div class="avatar">
+            <img [src]="colaborador.avatarUrl ?? 'assets/default-avatar.png'" alt="{{ colaborador.nombre }}">
+          </div>
+          <div class="details">
+            <span class="nombre">{{ colaborador.nombre }}</span>
+            <span class="rol" *ngIf="colaborador.rol">{{ colaborador.rol }}</span>
+          </div>
+        </div>
+        <div class="contact">
+          <a *ngIf="colaborador.email" [href]="'mailto:' + colaborador.email" class="email">
+            <mat-icon>email</mat-icon>
+          </a>
+          <a *ngIf="colaborador.githubUrl" [href]="colaborador.githubUrl" target="_blank" class="github">
+            <mat-icon svgIcon="github"></mat-icon>
+          </a>
+          </div>
+      </div>
+    </div>
+  
+    <ng-template #noColaboradores>
+      <p>No hay colaboradores registrados.</p>
+    </ng-template>
+  
+    </div>

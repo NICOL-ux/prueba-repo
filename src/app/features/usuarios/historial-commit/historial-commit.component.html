@@ -1,1 +1,22 @@
-<p>historial-commit works!</p>
+<div class="historial-commit-container">
+    <h2>Historial de Commits</h2>
+  
+    <div class="commit-list" *ngIf="commits && commits.length > 0; else noCommits">
+      <div class="commit-item" *ngFor="let commit of commits">
+        <div class="commit-header">
+          <span class="author">{{ commit.author }}</span>
+          <span class="date">{{ commit.date | date: 'medium' }}</span>
+        </div>
+        <div class="commit-message">{{ commit.message }}</div>
+        <div class="commit-details">
+          <span>Commit ID: {{ commit.id.substring(0, 7) }}</span>
+          <span *ngIf="commit.branch">Branch: {{ commit.branch }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #noCommits>
+      <p>No se encontraron commits en el historial.</p>
+    </ng-template>
+  
+    </div>

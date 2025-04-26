@@ -1,0 +1,60 @@
+/* subir-repositorio.component.scss */
+.subir-repositorio-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    .upload-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      .file-upload-label {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #f0f0f0;
+        color: #555;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #e0e0e0;
+        }
+  
+        mat-icon {
+          margin-right: 8px;
+        }
+      }
+  
+      .file-upload-input {
+        display: none;
+      }
+  
+      .file-name {
+        margin-top: 5px;
+        font-size: 0.9em;
+        color: #777;
+      }
+  
+      mat-progress-bar {
+        margin-bottom: 15px;
+      }
+  
+      button {
+        margin-top: 10px;
+      }
+    }
+  }
