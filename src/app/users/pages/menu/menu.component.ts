@@ -41,7 +41,7 @@ export type MenuItem = {
 
     <mat-nav-list class="menu-list">
       <ng-container *ngFor="let item of filteredMenuItems(); trackBy: trackByFn">
-        <a class="menu-item" [routerLink]="item.route" routerLinkActive="active-link">
+      <a class="menu-item" [routerLink]="[item.route]" routerLinkActive="active-link">
           <mat-list-item [activated]="isActiveRoute(item.route)">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             <span [class.collapsed]="collapsed">{{ item.label }}</span>
