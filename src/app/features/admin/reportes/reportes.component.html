@@ -1,102 +1,101 @@
 <div class="main-content">
   <div class="dashboard-title">
-    <i class="fas fa-chart-line"></i>
+    <mat-icon>insert_chart</mat-icon>
     <h1>Panel de Reportes</h1>
   </div>
 
   <div class="stats-grid">
-    <div class="stat-card blue">
-      <div class="stat-header">
-        <i class="fas fa-file-alt"></i>
-        <h3>Documentos Totales</h3>
-      </div>
-      <div class="stat-subtitle">
-        <i class="fas fa-info-circle"></i>
-        <span>Todos los documentos </span>
-      </div>
-      <div class="stat-number">120</div>
-    </div>
+    <mat-card class="stat-card blue">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>file_alt</mat-icon>
+          Documentos Totales
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-subtitle>
+        <mat-icon>info</mat-icon>
+        <span>Todos los documentos</span>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div class="stat-number">120</div>
+      </mat-card-content>
+    </mat-card>
 
-
-    
-
-    <div class="stat-card red">
-      <div class="stat-header">
-        <i class="fa-solid fa-trash" style="color: #74C0FC;"></i>
-                <h3>Eliminados</h3>
-      </div>
-      <div class="stat-subtitle">
-        <i class="fas fa-info-circle"></i>
+    <mat-card class="stat-card red">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon color="warn">delete</mat-icon>
+          Eliminados
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-subtitle>
+        <mat-icon>info</mat-icon>
         <span>Repositorios Eliminados</span>
-      </div>
-      <div class="stat-number">10</div> 
-    </div>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div class="stat-number">10</div>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <div class="table-section">
     <div class="table-header">
-      <h3><i class="fas fa-table section-icon"></i>Listado de Documentos</h3>
-      <div class="search-box">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" class="search-input" placeholder="Buscar...">
-      </div>
+      <h3>
+        <mat-icon class="section-icon">table_view</mat-icon>
+        Listado de Documentos
+      </h3>
+      <mat-form-field class="search-box">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="Buscar...">
+      </mat-form-field>
     </div>
 
     <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Documento</th>
-            <th>Fecha</th>
-            <th>Usuario</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Oficio 001</td>
-            <td>2025-04-01</td>
-            <td>Juan-edu.pe</td>
-            <td class="approved">Activo</td>
-            <td>
-              <button class="view-btn"><i class="fas fa-eye"></i> Ver</button>
-              <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
-              <button class="delete-btn"><i class="fas fa-trash-alt"></i> Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Informe Técnico</td>
-            <td>2025-04-05</td>
-            <td>Maria-edu.pe</td>
-            <td class="approved">Activo</td>
-            <td>
-              <button class="view-btn"><i class="fas fa-eye"></i> Ver</button>
-              <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
-              <button class="delete-btn"><i class="fas fa-trash-alt"></i> Eliminar</button>
+      <table mat-table [dataSource]="dataSource" class="documents-table">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Documento</th>
+          <td mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+        </ng-container>
 
-            </td>
-          </tr>
-          <tr>
-            <td>Solicitud 09</td>
-            <td>2025-04-10</td>
-            <td>Jesus-edu.pe</td>
-            <td class="rejected">Eliminado</td>
-            <td>
-              <button class="view-btn"><i class="fas fa-eye"></i> Ver</button>
-              <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
-              <button class="delete-btn"><i class="fas fa-trash-alt"></i> Eliminar</button>
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let row">{{ row.fecha }}</td>
+        </ng-container>
 
-            </td>
-          </tr>
-        </tbody>
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let row">{{ row.usuario }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let row" [class]="row.estado.toLowerCase()">{{ row.estado }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" aria-label="Ver documento">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" aria-label="Descargar documento">
+              <mat-icon>download</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Eliminar documento">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
 
     <div class="pagination">
-      <div class="page-item"><span class="page-link active">1</span></div>
-      <div class="page-item"><span class="page-link">2</span></div>
-      <div class="page-item"><span class="page-link">3</span></div>
+      <button mat-button color="primary">1</button>
+      <button mat-button>2</button>
+      <button mat-button>3</button>
     </div>
   </div>
 </div>

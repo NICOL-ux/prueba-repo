@@ -1,0 +1,44 @@
+<div class="contenido-principal">
+  <h2 class="titulo-seccion">
+    <i class="fas fa-folder-open"></i> Documentos Recibidos
+  </h2>
+
+  <div class="documentos-grid">
+    <div class="documento-container" *ngFor="let doc of documentos">
+      <div class="documento-header">
+        <h3 class="documento-titulo">{{ doc.titulo }}</h3>
+        <p class="documento-codigo">Código: {{ doc.codigo }}</p>
+      </div>
+      <div class="documento-cuerpo">
+        <div class="documento-icono">
+          <i class="fas fa-file-pdf icono-pdf"></i>
+          <div class="etiqueta" [ngClass]="{
+            'etiqueta-verde': doc.etiqueta === 'verde',
+            'etiqueta-roja': doc.etiqueta === 'roja',
+            'etiqueta-amarilla': doc.etiqueta === 'amarilla'
+          }">
+            <i class="fas fa-bookmark"></i>
+          </div>
+        </div>
+      </div>
+      <div class="documento-footer">
+        <button class="btn-ver" (click)="verDocumento(doc)">
+          <i class="fas fa-eye"></i> Ver
+        </button>
+        <button class="btn-descargar" (click)="descargarDocumento(doc)">
+          <i class="fas fa-download"></i> Descargar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="modalAbierto">
+    <div class="modal-contenido">
+      <h3>{{ documentoSeleccionado?.titulo }}</h3>
+      <p><strong>Código:</strong> {{ documentoSeleccionado?.codigo }}</p>
+      <p><strong>Etiqueta:</strong> {{ documentoSeleccionado?.etiqueta }}</p>
+      <p><strong>Fecha de envío:</strong> {{ documentoSeleccionado?.fecha || 'N/D' }}</p>
+      <button class="btn-cerrar" (click)="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+</div>

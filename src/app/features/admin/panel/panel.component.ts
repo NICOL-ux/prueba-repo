@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 interface Documento {
   codigo: string;
@@ -10,10 +16,15 @@ interface Documento {
   estado: string;
 }
 
+interface UsuarioTabla {
+  nombre: string;
+  correo: string;
+}
+
 @Component({
   selector: 'app-panel',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule, MatCardModule, MatTableModule, MatButtonModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss']
 })
@@ -37,6 +48,14 @@ export class PanelComponent {
   ];
 
   documentosFiltrados: Documento[] = [];
+
+  usuariosTabla: UsuarioTabla[] = [
+    { nombre: 'Juan Pérez', correo: 'juan.perez@email.com' },
+    { nombre: 'Ana Gómez', correo: 'ana.gomez@email.com' },
+    // Más usuarios según sea necesario
+  ];
+
+  displayedColumns: string[] = ['nombre', 'correo', 'acciones'];
 
   constructor() {
     this.calcularEstadisticas();

@@ -1,0 +1,106 @@
+/* usuarios.component.scss */
+.main {
+  padding: 20px;
+
+  section {
+    h2 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      mat-icon {
+        margin-right: 10px;
+        font-size: 24px;
+        color: #3f51b5; /* Color primario para el icono del título */
+      }
+    }
+
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden; /* Asegura que el contenido de MatCard no se desborde */
+
+      mat-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+        border-bottom: 1px solid #eee;
+
+        .mat-card-title {
+          margin-bottom: 0;
+          display: flex;
+          align-items: center;
+
+          mat-icon {
+            margin-right: 8px;
+          }
+        }
+
+        .search {
+          mat-form-field {
+            width: 200px;
+          }
+        }
+      }
+
+      mat-card-content {
+        padding: 16px 24px;
+
+        table.user-table {
+          width: 100%;
+          border-collapse: collapse;
+
+          th {
+            background-color: #f5f5f5;
+            color: #333;
+            font-weight: bold;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+          }
+
+          td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+          }
+
+          tr:last-child td {
+            border-bottom: none;
+          }
+
+          .actions {
+            display: flex;
+            gap: 10px;
+          }
+        }
+
+        &.form-container {
+          padding-top: 24px;
+
+          form.form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+          }
+
+          .form-select {
+            width: 200px;
+            margin-bottom: 16px;
+          }
+
+          .submit {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

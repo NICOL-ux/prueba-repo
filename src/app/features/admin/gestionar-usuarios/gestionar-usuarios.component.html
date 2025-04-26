@@ -1,0 +1,103 @@
+<div class="main">
+  <section>
+    <h2>
+      <mat-icon>people</mat-icon>
+      Administrar Usuarios
+    </h2>
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Lista de Usuarios</mat-card-title>
+        <div class="search">
+          <mat-form-field appearance="outline">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput placeholder="Buscar usuario..." />
+          </mat-form-field>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" class="user-table">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombreApellido">
+            <th mat-header-cell *matHeaderCellDef>Nombre y Apellido</th>
+            <td mat-cell *matCellDef="let row">{{ row.nombreApellido }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef>Correo</th>
+            <td mat-cell *matCellDef="let row">{{ row.correo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="contrasena">
+            <th mat-header-cell *matHeaderCellDef>Contraseña</th>
+            <td mat-cell *matCellDef="let row">{{ row.contrasena }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let row">
+              <div class="actions">
+                <button mat-raised-button color="warn">
+                  <mat-icon>block</mat-icon>
+                  Bloquear
+                </button>
+                <button mat-raised-button color="warn">
+                  <mat-icon>delete_forever</mat-icon>
+                  Eliminar
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>person_add</mat-icon>
+          Agregar Usuario
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="form-container">
+        <form class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre y Apellido</mat-label>
+            <input matInput type="text" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput type="email" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput type="password" />
+          </mat-form-field>
+        </form>
+        <mat-form-field appearance="outline" class="form-select">
+          <mat-label>Rol</mat-label>
+          <mat-select>
+            <mat-option value="administrador">Administrador</mat-option>
+            <mat-option value="usuario">Usuario</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="submit">
+          <button mat-raised-button color="primary">
+            <mat-icon>add_circle</mat-icon>
+            Agregar
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

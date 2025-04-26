@@ -42,7 +42,7 @@ export class MenuAdminComponent {
 
   administradorMenuItems = signal<MenuItem[]>([
     { icon: 'dashboard', label: 'Panel', route: 'panel' },
-    { icon: 'people', label: 'Usuarios', route: 'usuarios' },
+    { icon: 'people', label: 'Usuarios', route: 'gestionar-usuarios' },
     { icon: 'security', label: 'Reportes', route: 'reportes' },
     { icon: 'folder', label: 'Recursos', route: 'recursos' },
     { icon: 'timeline', label: 'Monitoreo', route: 'monitoreo' },
