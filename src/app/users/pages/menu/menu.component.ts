@@ -34,9 +34,9 @@ export type MenuItem = {
           [style.height.px]="profileImageSize()"
         />
       </div>
-      <h2 class="profile-name" [class.collapsed]="collapsed">Usuario</h2>
+      <h2 class="profile-name" [class.collapsed]="collapsed">{{ profileName() }}</h2>
       <h3 class="user-name" [class.collapsed]="collapsed">Nombre</h3>
-      <p class="email" [class.collapsed]="collapsed">correejemplocom</p>
+      <p class="email" [class.collapsed]="collapsed">correoejemplo.com</p>
     </div>
 
     <mat-nav-list class="menu-list">
@@ -103,22 +103,29 @@ export class MenuComponent {
   @Input() collapsed = false;
 
   // Menú para administrador
-
+  adminMenuItems = signal<MenuItem[]>([
+    { icon: 'dashboard', label: 'Panel', route: '/admin/panel' },
+    { icon: 'people', label: 'Usuarios', route: '/admin/usuarios' },
+    { icon: 'security', label: 'Reportes', route: '/admin/reportes' },
+    { icon: 'folder', label: 'Recursos', route: '/admin/recursos' },
+    { icon: 'timeline', label: 'Monitoreo', route: '/admin/monitoreo' },
+  ]);
 
   // Menú para usuario (repositorio)
   usuarioMenuItems = signal<MenuItem[]>([
-    { icon: 'upload_file', label: 'Subir Repositorios', route: 'subir-repositorio' },
-    { icon: 'folder_open', label: 'Mis Repositorios', route: 'repositorio' },
-    { icon: 'code', label: 'Historial de Commit', route: 'historial-commit' },
-    { icon: 'group', label: 'Colaboradores', route: 'colaboradores' },
-    { icon: 'notifications', label: 'Notificaciones', route: 'notificaciones' },
+    { icon: 'upload_file', label: 'Subir Repositorios', route: '/usuario/subir-repositorio' },
+    { icon: 'folder_open', label: 'Mis Repositorios', route: '/usuario/repositorio' },
+    { icon: 'code', label: 'Historial de Commit', route: '/usuario/historial-commit' },
+    { icon: 'group', label: 'Colaboradores', route: '/usuario/colaboradores' },
+    { icon: 'notifications', label: 'Notificaciones', route: '/usuario/notificaciones' },
   ]);
 
   // Computa el menú según el rol
   filteredMenuItems = computed(() => {
     const role = this.roleService.getRole();
     switch (role) {
-     
+      case 'admin':
+        return this.adminMenuItems();
       case 'usuario':
         return this.usuarioMenuItems();
       default:
@@ -126,12 +133,17 @@ export class MenuComponent {
     }
   });
 
+  profileName = computed(() => {
+    const role = this.roleService.getRole();
+    return role === 'admin' ? 'Administrador' : 'Usuario';
+  });
+
   profileImageSize = computed(() => (this.collapsed ? 40 : 80));
 
   constructor(private router: Router, private roleService: RoleService) {}
 
   isActiveRoute(route: string): boolean {
-    return this.router.isActive(`/${route}`, true);
+    return this.router.isActive(route, true);
   }
 
   logout(): void {

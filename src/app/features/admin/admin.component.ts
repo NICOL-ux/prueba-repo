@@ -1,3 +1,4 @@
+// src/app/features/admin/admin.component.ts
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,10 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
-import { MenuAdminComponent } from './pages/menu-admin/menu-admin.component'; // Asegúrate de que esta ruta sea correcta
+import { MenuAdminComponent } from '../../users/pages/menu-admin/menu-admin.component';
 
 @Component({
   selector: 'app-admin',
+  standalone: true,
   imports: [
     CommonModule,
     RouterOutlet,
@@ -16,7 +18,7 @@ import { MenuAdminComponent } from './pages/menu-admin/menu-admin.component'; //
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MenuAdminComponent // Usa el componente de menú para admin
+    MenuAdminComponent,
   ],
   template: `
     <mat-toolbar>
@@ -29,15 +31,13 @@ import { MenuAdminComponent } from './pages/menu-admin/menu-admin.component'; //
       <span class="example-spacer"></span>
 
       <button mat-icon-button (click)="isDarkMode.set(!isDarkMode())">
-        <mat-icon>
-          {{ isDarkMode() ? 'dark_mode' : 'light_mode' }}
-        </mat-icon>
+        <mat-icon>{{ isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
       </button>
     </mat-toolbar>
 
     <mat-sidenav-container>
       <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
-        <app-menu-admin [collapsed]="collapsed()" />
+        <app-menu-admin [collapsed]="collapsed()"></app-menu-admin>
       </mat-sidenav>
 
       <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">

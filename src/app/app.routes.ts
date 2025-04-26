@@ -1,3 +1,4 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { LoginComponent } from './users/pages/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
@@ -11,6 +12,7 @@ import { AdminComponent } from './features/admin/admin.component';
 import { RecursosComponent } from './features/admin/recursos/recursos.component';
 import { MonitoreoComponent } from './features/admin/monitoreo/monitoreo.component';
 import { ReportesComponent } from './features/admin/reportes/reportes.component';
+import { PanelComponent } from './features/admin/panel/panel.component';
 
 export const routes: Routes = [
   {
@@ -23,17 +25,17 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'admin',
+    path: 'administrador',
     component: AdminComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['admin'] },
+    data: { roles: ['administrador'] },
     children: [
       { path: '', redirectTo: 'panel', pathMatch: 'full' },
+      { path: 'panel', component: PanelComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'reportes', component: ReportesComponent },
       { path: 'recursos', component: RecursosComponent },
       { path: 'monitoreo', component: MonitoreoComponent },
-   
     ],
   },
   {

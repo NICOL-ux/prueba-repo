@@ -1,26 +1,17 @@
+// src/app/core/services/role.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
-  private currentRole: string | null = null;
+  private role: string = '';
 
   setRole(role: string) {
-    this.currentRole = role;
-    localStorage.setItem('role', role); // Persistencia en localStorage
+    this.role = role;
   }
 
-  getRole(): string | null {
-    return this.currentRole || localStorage.getItem('role');
-  }
-
-  isLoggedIn(): boolean {
-    return !!this.getRole();
-  }
-
-  clearRole(): void {
-    this.currentRole = null;
-    localStorage.removeItem('role');
+  getRole(): string {
+    return this.role;
   }
 }

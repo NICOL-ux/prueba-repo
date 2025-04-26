@@ -1,3 +1,4 @@
+// src/app/core/services/auth.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private users = [
-    { username: 'admin', password: 'admin123', role: 'admin' },
+    { username: 'admin', password: 'admin123', role: 'administrador' },
     { username: 'usuario', password: 'usuario123', role: 'usuario' },
   ];
 
