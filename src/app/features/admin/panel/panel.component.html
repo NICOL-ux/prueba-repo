@@ -1,0 +1,73 @@
+<div class="panel-container">
+  <section class="estadisticas">
+    <h2 class="titulo-seccion">
+      <i class="fas fa-chart-bar icono-seccion"></i>
+      DASHBOARD
+    </h2>
+    <div class="contenedor-estadisticas">
+      <div class="card total">
+        <div class="icono">
+          <i class="fa-solid fa-user-group" style="color: #74C0FC;"></i>
+        </div>
+        <h4>Usuarios Registrados</h4>
+        <p>{{ totalDocumentos }}</p>
+      </div>
+      <div class="card aprobados">
+        <div class="icono">
+          <i class="fa-solid fa-folder-open" style="color: #63E6BE;"></i>        </div>
+        <h4>Repositorios Subidos</h4>
+        <p>{{ aprobados }}</p>
+      </div>
+      <div class="card pendientes">
+        <div class="icono">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h4>Uso del Servidor</h4>
+        <p>{{ pendientes }}</p>
+      </div>
+      <div class="card rechazados">
+        <div class="icono">
+          <i class="fa-solid fa-triangle-exclamation"></i>        </div>
+        <h4>Alertas de seguridad</h4>
+        <p>{{ rechazados }}</p>
+      </div>
+    </div>
+  </section>
+
+      <section class="gestion-usuarios">
+        <h2 class="titulo-seccion">
+          <i class="fas fa-users icono-seccion"></i>
+          Gestión de Usuarios
+        </h2>
+        <div class="tabla-usuarios">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo Electrónico</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Juan Pérez</td>
+                <td>juan.perezemail.com</td>
+                <td>
+                  <button class="btn-bloquear">Bloquear</button>
+                  <button class="btn-eliminar">Eliminar</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Ana Gómez</td>
+                <td>ana.gomezemail.com</td>
+                <td>
+                  <button class="btn-bloquear">Bloquear</button>
+                  <button class="btn-eliminar">Eliminar</button>
+                </td>
+              </tr>
+              <!-- Más filas según sea necesario -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+      

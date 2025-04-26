@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { RoleService } from '../../../core/services/role.service';
+import { RoleService } from '../../../../core/services/role.service'; // Asegúrate de que la ruta sea correcta
 
 export type MenuItem = {
   icon: string;
@@ -13,7 +13,7 @@ export type MenuItem = {
 };
 
 @Component({
-  selector: 'app-menu',
+  selector: 'app-menu-admin',
   standalone: true,
   imports: [
     CommonModule,
@@ -27,20 +27,20 @@ export type MenuItem = {
     <div class="profile-section" [class.collapsed]="collapsed">
       <div class="profile-image-container">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/3839/3839635.png"
-          alt="perfil"
+          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          alt="perfil admin"
           class="profile-image"
           [style.width.px]="profileImageSize()"
           [style.height.px]="profileImageSize()"
         />
       </div>
-      <h2 class="profile-name" [class.collapsed]="collapsed">Usuario</h2>
-      <h3 class="user-name" [class.collapsed]="collapsed">Nombre</h3>
-      <p class="email" [class.collapsed]="collapsed">correejemplocom</p>
+      <h2 class="profile-name" [class.collapsed]="collapsed">Administrador</h2>
+      <h3 class="user-name" [class.collapsed]="collapsed">Admin Name</h3>
+      <p class="email" [class.collapsed]="collapsed">adminxamplecom</p>
     </div>
 
     <mat-nav-list class="menu-list">
-      <ng-container *ngFor="let item of filteredMenuItems(); trackBy: trackByFn">
+      <ng-container *ngFor="let item of adminMenuItems(); trackBy: trackByFn">
         <a class="menu-item" [routerLink]="[item.route]" routerLinkActive="active-link">
           <mat-list-item [activated]="isActiveRoute(item.route)">
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
@@ -99,32 +99,18 @@ export type MenuItem = {
     }
   `,
 })
-export class MenuComponent {
+export class MenuAdminComponent {
   @Input() collapsed = false;
 
   // Menú para administrador
-
-
-  // Menú para usuario (repositorio)
-  usuarioMenuItems = signal<MenuItem[]>([
-    { icon: 'upload_file', label: 'Subir Repositorios', route: 'subir-repositorio' },
-    { icon: 'folder_open', label: 'Mis Repositorios', route: 'repositorio' },
-    { icon: 'code', label: 'Historial de Commit', route: 'historial-commit' },
-    { icon: 'group', label: 'Colaboradores', route: 'colaboradores' },
-    { icon: 'notifications', label: 'Notificaciones', route: 'notificaciones' },
+  adminMenuItems = signal<MenuItem[]>([
+       { icon: 'dashboard', label: 'Panel de Control', route: 'panel' },
+       { icon: 'group', label: 'Gestionar Usuarios', route: 'usuarios' },
+       { icon: 'shield', label: 'Moderacion de contenidos', route: 'reportes' },
+       { icon: 'folder', label: 'Gestion de Recursos', route: 'recursos' },
+       { icon: 'activity', label: 'Monitoreo de Actividad', route: 'monitoreo' },
+    // Agrega aquí más elementos de menú para el administrado
   ]);
-
-  // Computa el menú según el rol
-  filteredMenuItems = computed(() => {
-    const role = this.roleService.getRole();
-    switch (role) {
-     
-      case 'usuario':
-        return this.usuarioMenuItems();
-      default:
-        return [];
-    }
-  });
 
   profileImageSize = computed(() => (this.collapsed ? 40 : 80));
 
@@ -135,8 +121,8 @@ export class MenuComponent {
   }
 
   logout(): void {
-    this.roleService.setRole('');
-    this.router.navigate(['/login']);
+    this.roleService.setRole(''); // O la lógica para limpiar el rol de administrador
+    this.router.navigate(['/login']); // Redirigir a la página de inicio de sesión
   }
 
   trackByFn(index: number, item: MenuItem): string {
