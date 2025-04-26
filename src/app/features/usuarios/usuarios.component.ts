@@ -25,7 +25,7 @@ import { MenuComponent } from '../../users/pages/menu/menu.component';
       </button>
 
       <span class="example-spacer"></span>
-      <h1>xghjk</h1>
+      <h1>usuario</h1>
       <span class="example-spacer"></span>
 
       <button mat-icon-button (click)="isDarkMode.set(!isDarkMode())">
