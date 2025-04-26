@@ -34,9 +34,9 @@ export type MenuItem = {
           [style.height.px]="profileImageSize()"
         />
       </div>
-      <h2 class="profile-name" [class.collapsed]="collapsed">Profesora</h2>
-      <h3 class="user-name" [class.collapsed]="collapsed">Karina</h3>
-      <p class="email" [class.collapsed]="collapsed">karina123gmai</p>
+      <h2 class="profile-name" [class.collapsed]="collapsed">Usuario</h2>
+      <h3 class="user-name" [class.collapsed]="collapsed">Nombre</h3>
+      <p class="email" [class.collapsed]="collapsed">correejemplocom</p>
     </div>
 
     <mat-nav-list class="menu-list">
@@ -102,28 +102,30 @@ export type MenuItem = {
 export class MenuComponent {
   @Input() collapsed = false;
 
+  // Menú para profesora
   profesoraMenuItems = signal<MenuItem[]>([
-    { icon: 'person', label: 'Gestión Alumnos', route: 'gestion-alumnos' },
-    { icon: 'tablet_mac', label: 'Gestión Tablet', route: 'gestion-tables' },
-    { icon: 'download', label: 'Ingreso Tablets', route: 'ingreso-tablet' },
-    { icon: 'history', label: 'Historial Asignación', route: 'historial-asignacion' },
+    { icon: 'person', label: 'hddhhdnnd', route: 'gestion-alumnos' },
+    { icon: 'grade', label: 'Evaluaciones', route: 'evaluaciones' },
+    { icon: 'settings', label: 'Configuración', route: 'configuracion' },
   ]);
 
-  usuariosMenuItems = signal<MenuItem[]>([
-    { icon: 'folder_open', label: 'Mis Repositorios', route: 'repositorio' }, // 'folder_open' para repositorios
-    { icon: 'upload_file', label: 'Subir Repositorios', route: 'subir-repositorio' }, // 'upload_file' para subir
-    { icon: 'code', label: 'Historial de Commit', route: 'historial-commit' }, // 'code' para commits
-    { icon: 'group', label: 'Colaboradores', route: 'colaboradores' }, // 'group' para colaboradores
-    { icon: 'notifications', label: 'Notificaciones', route: 'notificaciones' }, // 'notifications' para notificaciones
+  // Menú para usuario (repositorio)
+  usuarioMenuItems = signal<MenuItem[]>([
+    { icon: 'folder_open', label: 'Mis Repositorios', route: 'repositorio' },
+    { icon: 'upload_file', label: 'Subir Repositorios', route: 'subir-repositorio' },
+    { icon: 'code', label: 'Historial de Commit', route: 'historial-commit' },
+    { icon: 'group', label: 'Colaboradores', route: 'colaboradores' },
+    { icon: 'notifications', label: 'Notificaciones', route: 'notificaciones' },
   ]);
 
+  // Computa el menú según el rol
   filteredMenuItems = computed(() => {
     const role = this.roleService.getRole();
     switch (role) {
       case 'profesora':
         return this.profesoraMenuItems();
-      case 'director':
-        return this.usuariosMenuItems();
+      case 'usuario':
+        return this.usuarioMenuItems();
       default:
         return [];
     }
